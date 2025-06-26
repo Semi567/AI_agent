@@ -8,8 +8,17 @@ from google import genai
 
 client = genai.Client(api_key=api_key)
 
+#command line argument for prompt
+import sys
+
+if len(sys.argv) < 2:
+    print("Please provide an argument!")
+    sys.exit(1)
+
+argument = sys.argv[1]
+
 response = client.models.generate_content(
-    model='gemini-2.0-flash-001', contents='Why is Boot.dev such a great place to learn backend development? Use one paragraph maximum.'
+    model='gemini-2.0-flash-001', contents=argument
 )
 print(response.text)
 
